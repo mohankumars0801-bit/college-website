@@ -263,7 +263,8 @@
           
           <!-- YouTube Playlist / Video tab switcher -->
           <div class="video-tabs" style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap;">
-            <button class="vid-tab-btn active" onclick="switchVideo('y3O_s4b67h0', this)" style="padding: 0.4rem 0.8rem; font-size: 0.8rem; font-weight: 600; border: 1px solid #205E9A; border-radius: 6px; background-color: #205E9A; color: #ffffff; cursor: pointer; transition: all 0.2s;">Principal's Vision</button>
+            <button class="vid-tab-btn active" onclick="switchVideo('pL4Ycf199Rc', this)" style="padding: 0.4rem 0.8rem; font-size: 0.8rem; font-weight: 600; border: 1px solid #205E9A; border-radius: 6px; background-color: #205E9A; color: #ffffff; cursor: pointer; transition: all 0.2s;">Campus Showcase</button>
+            <button class="vid-tab-btn" onclick="switchVideo('y3O_s4b67h0', this)" style="padding: 0.4rem 0.8rem; font-size: 0.8rem; font-weight: 600; border: 1px solid #e2e8f0; border-radius: 6px; background-color: #ffffff; color: #334155; cursor: pointer; transition: all 0.2s;">Principal's Vision</button>
             <button class="vid-tab-btn" onclick="switchVideo('kR6LwT5O33s', this)" style="padding: 0.4rem 0.8rem; font-size: 0.8rem; font-weight: 600; border: 1px solid #e2e8f0; border-radius: 6px; background-color: #ffffff; color: #334155; cursor: pointer; transition: all 0.2s;">Campus Review</button>
             <button class="vid-tab-btn" onclick="switchVideo('F0m58p6uJ0w', this)" style="padding: 0.4rem 0.8rem; font-size: 0.8rem; font-weight: 600; border: 1px solid #e2e8f0; border-radius: 6px; background-color: #ffffff; color: #334155; cursor: pointer; transition: all 0.2s;">Admissions Overview</button>
           </div>
@@ -271,7 +272,7 @@
           <div class="video-player-wrapper">
             <!-- Embedding the official Kings Engineering College Video frame -->
             <iframe id="kec-yt-iframe"
-                    src="https://www.youtube.com/embed/y3O_s4b67h0" 
+                    src="https://www.youtube.com/embed/pL4Ycf199Rc" 
                     title="Kings Engineering College Campus Introduction" 
                     frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -580,7 +581,6 @@
 
   <!-- Basic navigation interaction script -->
   <script>
-    // Responsive menu toggle
     const toggleBtn = document.querySelector('.menu-toggle');
     const navUl = document.querySelector('nav ul');
     
@@ -590,7 +590,6 @@
       });
     }
 
-    // Interactive navbar active link switcher on scroll
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('nav a');
 
@@ -612,7 +611,6 @@
       });
     });
 
-    // YouTube playlist switch function
     function switchVideo(youtubeId, btn) {
       document.getElementById('kec-yt-iframe').src = 'https://www.youtube.com/embed/' + youtubeId;
       
