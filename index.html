@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Department of Computer Science and Engineering | Kings Engineering College</title>
+  
+  <!-- Link External CSS for Page Layout, Structure, Grids, and Theme Colors -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Internal CSS for Table Styling (Assignment Requirement) -->
+  <style>
+    /* ==========================================================================
+       Internal CSS for Tables (Faculty and Timetable)
+       ========================================================================== */
+    
+    /* Table Shell and Container styling */
+    .table-container {
+      width: 100%;
+      margin: 1.5rem 0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(32, 94, 154, 0.1);
+      background: #ffffff;
+      /* Border Image applied to the table wrapper */
+      border: 4px solid transparent;
+      border-image: linear-gradient(135deg, #205E9A 0%, #d4af37 50%, #205E9A 100%) 1;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      text-align: left;
+      min-width: 800px;
+    }
+
+    /* Table Header Styling */
+    th {
+      background: linear-gradient(135deg, #153E66 0%, #205E9A 100%);
+      color: #ffffff;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 1rem 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 3px solid #d4af37;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Table Data Cell Styling */
+    td {
+      padding: 0.9rem 1.25rem;
+      border-bottom: 1px solid #e2e8f0;
+      color: #334155;
+      transition: all 0.2s ease;
+    }
+
+    /* Row Background Striping */
+    tr:nth-child(even) td {
+      background-color: #f8fafc;
+    }
+
+    /* Interactive Row Hover Effect */
+    tr:hover td {
+      background-color: rgba(32, 94, 154, 0.05);
+      color: #153E66;
+      transform: scale(1.002);
+    }
+
+    /* Target specific structural table areas */
+    .subject-code {
+      font-weight: 700;
+      color: #205E9A;
+    }
+
+    .faculty-name {
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    /* Timetable special cell classes */
+    .break-cell, .lunch-cell {
+      background: linear-gradient(180deg, #fdfaf2 0%, #faecd1 100%) !important;
+      color: #d4af37 !important;
+      font-weight: 700;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      border-left: 1px solid #faecd1;
+      border-right: 1px solid #faecd1;
+    }
+
+    .lab-session {
+      background-color: rgba(212, 175, 55, 0.08) !important;
+      border-left: 3px solid #d4af37;
+    }
+
+    .theory-session {
+      border-left: 3px solid #205E9A;
+    }
+
+    /* Mini timetable badges */
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-top: 0.25rem;
+    }
+
+    .badge-theory {
+      background-color: #e0f2fe;
+      color: #0369a1;
+    }
+
+    .badge-lab {
+      background-color: #fef3c7;
+      color: #b45309;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation & Brand Header -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo-section">
+        <!-- Original Kings College Logo Banner -->
+        <img src="logo.png" alt="Kings Engineering College" class="logo-img">
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#overview" class="active">Overview</a></li>
+          <li><a href="#programmes">Programmes</a></li>
+          <li><a href="#intro-media">Introduction</a></li>
+          <li><a href="#faculty">Faculty Details</a></li>
+          <li><a href="#timetable">Timetable</a></li>
+        </ul>
+      </nav>
+      <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+    </div>
+  </header>
+
+  <!-- Main Website Content Wrapper -->
+  <main>
+
+    <!-- Hero Showcase Section -->
+    <section class="hero" id="overview">
+      <div class="hero-content">
+        <span class="hero-tag">Department of CSE</span>
+        
+        <!-- Heading using Inline CSS & text-shadow (Assignment Requirement) -->
+        <h2 style="font-family: 'Outfit', sans-serif; font-size: 2.6rem; font-weight: 800; color: #ffffff; text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5), 0 0 20px rgba(32, 94, 154, 0.6); margin-bottom: 1.5rem; line-height: 1.2;">
+          Shaping the Architects of the Digital Future
+        </h2>
+        
+        <p>The Department of Computer Science & Engineering (CSE) at Kings Engineering College, established in 2001, is dedicated to cultivating cutting-edge engineering skills, innovation, and strong moral values. Approved by AICTE and permanently affiliated with Anna University, we prepare students for the global IT market through immersive practical training and advanced laboratories.</p>
+        <a href="#timetable" class="hero-btn">View Academic Timetable</a>
+      </div>
+      <div class="hero-graphic">
+        <div class="hero-graphic-circle">
+          <div class="hero-graphic-inner">
+            <span>2001</span>
+            <label>Est. Year</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Layout Grid: programmes and stats -->
+    <div class="grid-container">
+      
+      <!-- Programmes Offered Card (List requirement) -->
+      <section id="programmes" class="programs-card">
+        <!-- Heading using Inline CSS & text-shadow (Assignment Requirement) -->
+        <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.75rem; font-weight: 700; color: #205E9A; text-shadow: 1px 1px 2px rgba(32, 94, 154, 0.15); border-bottom: 2px solid #d4af37; padding-bottom: 0.6rem; margin-bottom: 1.25rem;">
+          Academic Programmes Offered
+        </h3>
+        
+        <p>We offer undergraduate and postgraduate courses designed to cover the depth of algorithmic theories, core hardware systems, and emerging technologies.</p>
+        
+        <!-- Styled list of programs -->
+        <ul class="program-list">
+          <li class="program-item">
+            <div class="program-icon">B.E</div>
+            <div class="program-details">
+              <h4>B.E. Computer Science and Engineering</h4>
+              <p>Undergraduate Programme - 4 Years (Accredited under NAAC / NBA)</p>
+            </div>
+          </li>
+          <li class="program-item">
+            <div class="program-icon">B.T</div>
+            <div class="program-details">
+              <h4>B.Tech. Artificial Intelligence and Data Science</h4>
+              <p>Undergraduate Specialization - 4 Years (Modern Industry Curriculum)</p>
+            </div>
+          </li>
+          <li class="program-item">
+            <div class="program-icon">B.T</div>
+            <div class="program-details">
+              <h4>B.Tech. Information Technology</h4>
+              <p>Undergraduate Programme - 4 Years (Focused on software systems & networking)</p>
+            </div>
+          </li>
+          <li class="program-item">
+            <div class="program-icon">M.E</div>
+            <div class="program-details">
+              <h4>M.E. Computer Science and Engineering</h4>
+              <p>Postgraduate Programme - 2 Years (Research and Advanced Systems oriented)</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Sidebar Quick Stats with Background Image, Text Shadows, Box Shadows -->
+      <section style="display: flex; flex-direction: column; justify-content: center; background-image: linear-gradient(135deg, rgba(32, 94, 154, 0.95), rgba(21, 62, 102, 0.98)), url('https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=600&auto=format&fit=crop'); background-size: cover; background-position: center; color: #ffffff; text-align: center; gap: 2rem;">
+        
+        <!-- Heading using Inline CSS & text-shadow -->
+        <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.6rem; font-weight: 700; color: #d4af37; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); margin-bottom: 0.5rem;">
+          Department Quick Facts
+        </h3>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+          <div style="background: rgba(255, 255, 255, 0.08); padding: 1.5rem 1rem; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.1);">
+            <h4 style="font-size: 2.25rem; font-weight: 800; color: #ffffff; text-shadow: 1px 1px 3px rgba(0,0,0,0.4); margin-bottom: 0.25rem;">24+</h4>
+            <p style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: #e2e8f0;">Expert Faculty</p>
+          </div>
+          <div style="background: rgba(255, 255, 255, 0.08); padding: 1.5rem 1rem; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.1);">
+            <h4 style="font-size: 2.25rem; font-weight: 800; color: #ffffff; text-shadow: 1px 1px 3px rgba(0,0,0,0.4); margin-bottom: 0.25rem;">600+</h4>
+            <p style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: #e2e8f0;">Active Students</p>
+          </div>
+          <div style="background: rgba(255, 255, 255, 0.08); padding: 1.5rem 1rem; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.1);">
+            <h4 style="font-size: 2.25rem; font-weight: 800; color: #ffffff; text-shadow: 1px 1px 3px rgba(0,0,0,0.4); margin-bottom: 0.25rem;">92%</h4>
+            <p style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: #e2e8f0;">Placement Rate</p>
+          </div>
+          <div style="background: rgba(255, 255, 255, 0.08); padding: 1.5rem 1rem; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.1);">
+            <h4 style="font-size: 2.25rem; font-weight: 800; color: #ffffff; text-shadow: 1px 1px 3px rgba(0,0,0,0.4); margin-bottom: 0.25rem;">A++</h4>
+            <p style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: #e2e8f0;">NAAC Rating</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Media Players Section (Audio and Video controls required) -->
+    <section id="intro-media">
+      <!-- Heading using Inline CSS & text-shadow -->
+      <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.75rem; font-weight: 700; color: #205E9A; text-shadow: 1px 1px 2px rgba(32, 94, 154, 0.15); border-bottom: 2px solid #d4af37; padding-bottom: 0.6rem; margin-bottom: 1.5rem;">
+        Interactive Media Presentation
+      </h3>
+      
+      <p style="margin-bottom: 2rem;">Take an audio-visual tour of our academic classrooms, research labs, and hear from the department heads describing the learning environment at KEC.</p>
+      
+      <div class="media-section">
+        <!-- Video control card -->
+        <div class="video-container">
+          <h4 style="font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 600; color: #1e293b; margin-bottom: 0.5rem;">KEC YouTube Media Center</h4>
+          
+          <!-- YouTube Playlist / Video tab switcher -->
+          <div class="video-tabs" style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap;">
+            <button class="vid-tab-btn active" onclick="switchVideo('y3O_s4b67h0', this)" style="padding: 0.4rem 0.8rem; font-size: 0.8rem; font-weight: 600; border: 1px solid #205E9A; border-radius: 6px; background-color: #205E9A; color: #ffffff; cursor: pointer; transition: all 0.2s;">Principal's Vision</button>
+            <button class="vid-tab-btn" onclick="switchVideo('kR6LwT5O33s', this)" style="padding: 0.4rem 0.8rem; font-size: 0.8rem; font-weight: 600; border: 1px solid #e2e8f0; border-radius: 6px; background-color: #ffffff; color: #334155; cursor: pointer; transition: all 0.2s;">Campus Review</button>
+            <button class="vid-tab-btn" onclick="switchVideo('F0m58p6uJ0w', this)" style="padding: 0.4rem 0.8rem; font-size: 0.8rem; font-weight: 600; border: 1px solid #e2e8f0; border-radius: 6px; background-color: #ffffff; color: #334155; cursor: pointer; transition: all 0.2s;">Admissions Overview</button>
+          </div>
+
+          <div class="video-player-wrapper">
+            <!-- Embedding the official Kings Engineering College Video frame -->
+            <iframe id="kec-yt-iframe"
+                    src="https://www.youtube.com/embed/y3O_s4b67h0" 
+                    title="Kings Engineering College Campus Introduction" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen 
+                    style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; border: none; border-radius: 12px;">
+            </iframe>
+          </div>
+        </div>
+        
+        <!-- Audio control card -->
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <h4 style="font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 600; color: #1e293b; margin-bottom: 0.5rem;">Director's Welcoming Address</h4>
+          <div class="audio-container">
+            <div class="audio-info">
+              <div class="audio-cover">🎧</div>
+              <div class="audio-text">
+                <h4>HOD Welcome Message</h4>
+                <p>Academic Vision & Student Roadmap</p>
+              </div>
+            </div>
+            <!-- Audio controls included, playing a premium instrumental background piece -->
+            <audio controls>
+              <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+          <div class="border-image-box">
+            <p style="font-size: 0.9rem; color: #153E66; font-weight: 500; font-style: italic; line-height: 1.4; text-align: center;">
+              "Combining conceptual engineering with experiential laboratories to forge developers of integrity."
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Faculty Details Section (Table styled using internal CSS) -->
+    <section id="faculty">
+      <!-- Heading using Inline CSS & text-shadow -->
+      <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.75rem; font-weight: 700; color: #205E9A; text-shadow: 1px 1px 2px rgba(32, 94, 154, 0.15); border-bottom: 2px solid #d4af37; padding-bottom: 0.6rem; margin-bottom: 1.5rem;">
+        Faculty Details & Subject Assignment
+      </h3>
+      
+      <p style="margin-bottom: 1.5rem;">The following schedule records the primary courses and laboratories administered by our distinguished faculty members for the III Year, V Semester (Odd Semester, 2026-27).</p>
+      
+      <div class="table-section">
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Subject Code</th>
+                <th>Abbreviation</th>
+                <th>Subject Name</th>
+                <th>Faculty Name</th>
+                <th>Type</th>
+                <th>Credits</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="subject-code">CS243503</td>
+                <td>OOSE</td>
+                <td>Object Oriented Software Engineering</td>
+                <td class="faculty-name">Dr. C. Jullie Josephine</td>
+                <td><span class="badge badge-theory">Theory</span></td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td class="subject-code">CS243502</td>
+                <td>CN</td>
+                <td>Computer Networks</td>
+                <td class="faculty-name">Mr. S. Kumaresan</td>
+                <td><span class="badge badge-theory">Theory</span></td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td class="subject-code">CS243P18</td>
+                <td>WT</td>
+                <td>Web Technologies</td>
+                <td class="faculty-name">Dr. M. Parameswari</td>
+                <td><span class="badge badge-lab">Practical/Lab</span></td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td class="subject-code">CS243501</td>
+                <td>DC</td>
+                <td>Distributed Computing</td>
+                <td class="faculty-name">Ms. N. Ezhilarasi</td>
+                <td><span class="badge badge-theory">Theory</span></td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td class="subject-code">IT243502</td>
+                <td>DM</td>
+                <td>Digital Marketing</td>
+                <td class="faculty-name">Mrs. R. Jeyamalar</td>
+                <td><span class="badge badge-theory">Theory</span></td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td class="subject-code">AD243P05</td>
+                <td>BA</td>
+                <td>Business Analytics</td>
+                <td class="faculty-name">Dr. S. Thamilvannan</td>
+                <td><span class="badge badge-lab">Practical/Lab</span></td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td class="subject-code">MX243544</td>
+                <td>DRRM</td>
+                <td>Disaster Risk Reduction and Management</td>
+                <td class="faculty-name">Dr. E. Rajkumar</td>
+                <td><span class="badge badge-theory">Non-Credit</span></td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td class="subject-code">CS243502</td>
+                <td>CN LAB</td>
+                <td>Computer Networks Laboratory</td>
+                <td class="faculty-name">Mr. S. Kumaresan</td>
+                <td><span class="badge badge-lab">Practical/Lab</span></td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td class="subject-code">AD243P05</td>
+                <td>BA LAB</td>
+                <td>Business Analytics Laboratory</td>
+                <td class="faculty-name">Mrs. R. Jeyamalar</td>
+                <td><span class="badge badge-lab">Practical/Lab</span></td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td class="subject-code">CS243P18</td>
+                <td>WT LAB</td>
+                <td>Web Technologies Laboratory</td>
+                <td class="faculty-name">Mrs. J. Jasmine Margret</td>
+                <td><span class="badge badge-lab">Practical/Lab</span></td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td class="subject-code">TP24CS51</td>
+                <td>SBT-JP</td>
+                <td>Java Programming</td>
+                <td class="faculty-name">Mrs. T. C. Vidya</td>
+                <td><span class="badge badge-theory">Skill Course</span></td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td class="subject-code">TP03</td>
+                <td>TP</td>
+                <td>Training and Placement</td>
+                <td class="faculty-name">Mrs. G. Christina Mercy</td>
+                <td><span class="badge badge-theory">Training</span></td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td class="subject-code">TP243591</td>
+                <td>IEAE</td>
+                <td>Innovation Employability and Entrepreneurship</td>
+                <td class="faculty-name">Dr. Prabhu</td>
+                <td><span class="badge badge-theory">Skill Course</span></td>
+                <td>1</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Semester Timetable Section (Table styled using internal CSS) -->
+    <section id="timetable">
+      <!-- Heading using Inline CSS & text-shadow -->
+      <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.75rem; font-weight: 700; color: #205E9A; text-shadow: 1px 1px 2px rgba(32, 94, 154, 0.15); border-bottom: 2px solid #d4af37; padding-bottom: 0.6rem; margin-bottom: 1.5rem;">
+        CSE V-Semester Academic Timetable
+      </h3>
+      
+      <p style="margin-bottom: 1.5rem;">Official class schedule for Room No. A11, III CSE-A (Year 3). Class Advisor: Mr. S. Kumaresan | Head of Department: Dr. S. Kumaresan.</p>
+      
+      <div class="table-section">
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Day</th>
+                <th>1 (8:45-9:30)</th>
+                <th>2 (9:30-10:15)</th>
+                <th style="width: 50px; text-align: center;">10:15 - 10:30</th>
+                <th>3 (10:30-11:15)</th>
+                <th>4 (11:15-12:00)</th>
+                <th style="width: 50px; text-align: center;">12:00 - 12:45</th>
+                <th>5 (12:45-1:30)</th>
+                <th>6 (1:30-2:15)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="faculty-name">MON</td>
+                <td class="theory-session">CN</td>
+                <td class="theory-session">SBT/JP</td>
+                <td class="break-cell" rowspan="6">B<br>R<br>E<br>A<br>K</td>
+                <td class="theory-session">WT</td>
+                <td class="theory-session">DM</td>
+                <td class="lunch-cell" rowspan="6">L<br>U<br>N<br>C<br>H</td>
+                <td class="theory-session">TP-1</td>
+                <td class="theory-session">DC</td>
+              </tr>
+              <tr>
+                <td class="faculty-name">TUE</td>
+                <td class="theory-session">BA</td>
+                <td class="theory-session">CN</td>
+                <td class="lab-session" colspan="2">III CSE-A WT (B-1) B12 &amp; III CSE-A WT (B-2) B13</td>
+                <td class="theory-session">BA</td>
+                <td class="theory-session">OOSE</td>
+              </tr>
+              <tr>
+                <td class="faculty-name">WED</td>
+                <td class="theory-session">WT</td>
+                <td class="theory-session">DM</td>
+                <td class="lab-session" colspan="2">III CSE-A BA (B-1) B12 &amp; III CSE-A BA (B-2) B13</td>
+                <td class="theory-session">OOSE</td>
+                <td class="theory-session">DC</td>
+              </tr>
+              <tr>
+                <td class="faculty-name">THU</td>
+                <td class="theory-session">DC</td>
+                <td class="theory-session">CN</td>
+                <td class="theory-session">WT</td>
+                <td class="theory-session">OOSE</td>
+                <td class="theory-session">BA</td>
+                <td class="theory-session">DRRM</td>
+              </tr>
+              <tr>
+                <td class="faculty-name">FRI</td>
+                <td class="theory-session">DM</td>
+                <td class="theory-session">BA</td>
+                <td class="lab-session" colspan="2">III CSE-A CN (B-1) B14 &amp; III CSE-A CN (B-2) B15</td>
+                <td class="theory-session">WT</td>
+                <td class="theory-session">LIB/DC</td>
+              </tr>
+              <tr>
+                <td class="faculty-name">SAT</td>
+                <td class="theory-session">DM</td>
+                <td class="theory-session">BA</td>
+                <td class="theory-session">CN</td>
+                <td class="theory-session">DM</td>
+                <td class="theory-session">DC</td>
+                <td class="theory-session">BA</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <!-- Mentor Assignment Details Card -->
+      <div style="background: var(--bg-main); padding: 1.5rem; border-radius: 12px; margin-top: 1.5rem; display: grid; grid-template-columns: 1fr 1.2fr; gap: 2rem; border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+        <div>
+          <h4 style="font-family: 'Outfit', sans-serif; font-size: 1.05rem; color: #153E66; font-weight: 700; margin-bottom: 0.75rem;">Class Representatives</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.9rem;">
+            <li>👩‍🎓 <strong>Mathumitha J</strong> (Reg. No: 210824104049)</li>
+            <li>👨‍🎓 <strong>Abdul Qadeer R</strong> (Reg. No: 210824104001)</li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="font-family: 'Outfit', sans-serif; font-size: 1.05rem; color: #153E66; font-weight: 700; margin-bottom: 0.75rem;">Department Mentors</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.9rem;">
+            <li>🧑‍🏫 <strong>Mr. E. Munuswamy</strong> (Roll Range: 210824104001 to 210824104025)</li>
+            <li>🧑‍🏫 <strong>Mr. Gunasekaran</strong> (Roll Range: 210824104026 to 210824104051)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Website Footer Section -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-info">
+        <h3>KINGS ENGINEERING COLLEGE</h3>
+        <p style="margin-bottom: 1.25rem;">An Autonomous Institution, Approved by AICTE, New Delhi and Permanently Affiliated with Anna University, Chennai.</p>
+        <p style="color: #64748b; font-size: 0.8rem;">Accredited by NAAC / NBA (UG Programmes CSE, ECE, IT, MECH)</p>
+      </div>
+      <div class="footer-links">
+        <h4>Department Links</h4>
+        <ul>
+          <li><a href="#overview">Overview &amp; Vision</a></li>
+          <li><a href="#programmes">Programmes Offered</a></li>
+          <li><a href="#intro-media">Infrastructure Tour</a></li>
+          <li><a href="#faculty">Faculty Directory</a></li>
+          <li><a href="#timetable">Academic Timetable</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact Information</h4>
+        <ul>
+          <li>📍 Chennai-Bangalore Highway, Irungattukottai, Sriperumbudur, TN - 602117</li>
+          <li>📞 Call: +91 94444 11193 | 044-7122 4402</li>
+          <li>✉️ Email: cse@kingsedu.ac.in</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Kings Engineering College. All rights reserved.</p>
+      <p>Designed for academic compliance (HTML5, Internal Table CSS, Inline Heading CSS).</p>
+    </div>
+  </footer>
+
+  <!-- Basic navigation interaction script -->
+  <script>
+    // Responsive menu toggle
+    const toggleBtn = document.querySelector('.menu-toggle');
+    const navUl = document.querySelector('nav ul');
+    
+    if (toggleBtn && navUl) {
+      toggleBtn.addEventListener('click', () => {
+        navUl.style.display = navUl.style.display === 'flex' ? 'none' : 'flex';
+      });
+    }
+
+    // Interactive navbar active link switcher on scroll
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('nav a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= (sectionTop - 120)) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').slice(1) === current) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // YouTube playlist switch function
+    function switchVideo(youtubeId, btn) {
+      document.getElementById('kec-yt-iframe').src = 'https://www.youtube.com/embed/' + youtubeId;
+      
+      const buttons = document.querySelectorAll('.vid-tab-btn');
+      buttons.forEach(b => {
+        b.style.backgroundColor = '#ffffff';
+        b.style.color = '#334155';
+        b.style.borderColor = '#e2e8f0';
+      });
+      
+      btn.style.backgroundColor = '#205E9A';
+      btn.style.color = '#ffffff';
+      btn.style.borderColor = '#205E9A';
+    }
+  </script>
+</body>
+</html>
